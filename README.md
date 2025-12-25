@@ -28,7 +28,7 @@ StateMQ’s approach:
 Execution model:
 
 - MQTT messages are processed sequentially.
-- State transitions are resolved using a fixed, table-driven `(topic, payload) → state mapping`.
+- State transitions are resolved using a fixed, table-driven `(topic, payload) → state` mapping.
 - Execution remains deterministic and predictable.
 
 Originally developed for ESP32, the core abstraction is platform-agnostic and applicable to other state-driven, message-based embedded systems.
