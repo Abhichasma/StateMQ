@@ -1,0 +1,15 @@
+idf_component_register(
+  SRCS
+    "core/StateMQ.cpp"
+    "platform/esp_idf/StateMQ_ESP.cpp"
+  INCLUDE_DIRS
+    "include"
+    "core"
+    "platform/esp_idf"
+  REQUIRES
+    esp_wifi
+    esp_event
+    esp_netif
+    nvs_flash
+    mqtt
+)

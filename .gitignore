@@ -1,0 +1,15 @@
+# ESP-IDF
+build/
+sdkconfig
+sdkconfig.old
+
+# Arduino
+*.elf
+*.bin
+*.map
+*.hex
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/

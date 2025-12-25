@@ -1,0 +1,21 @@
+menu "StateMQ Node"
+
+config STATEMQ_WIFI_SSID
+    string "WiFi SSID"
+    default ""
+    help
+        WiFi SSID used for STA connection.
+
+config STATEMQ_WIFI_PASS
+    string "WiFi Password"
+    default ""
+    help
+        WiFi password used for STA connection.
+
+config STATEMQ_BROKER_URI
+    string "MQTT Broker URI"
+    default "mqtt://192.168.2.4:1883"
+    help
+        Must include scheme and optional port, e.g. mqtt://192.168.2.4:1883
+
+endmenu
