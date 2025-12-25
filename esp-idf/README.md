@@ -1,6 +1,6 @@
-# StateMQ – ESP-IDF Examples
+# StateMQ – ESP-IDF 
 
-This directory contains native ESP-IDF examples using the StateMQ core
+This directory contains native ESP-IDF files and examples using the StateMQ core
 
 ## Requirements
 

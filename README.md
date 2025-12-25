@@ -10,42 +10,28 @@ Arduino library.
 
 
 
-## Motivation
+## Motivation and Core Idea
 
-In both my professional work and academic research, I repeatedly encountered
-MQTT-controlled systems whose behavior was inherently stateful.
+Through professional and academic work, I repeatedly encountered MQTT-controlled embedded systems whose behavior was inherently stateful.
+In many projects, MQTT messages directly drove application logic, which over time led to scattered callbacks and tangled control flow.
+This pattern made systems increasingly difficult to extend, reason about, and maintain safely.
 
-MQTT messages are often used to directly drive application behavior, which
-over time concentrates control flow and periodic logic and makes systems
-harder to extend and reason about safely.
+StateMQ’s approach:
 
-StateMQ addresses this by treating MQTT messages as events that trigger
-explicit state transitions, while periodic work is expressed independently
-as scheduled tasks.
+- Treat MQTT messages as events, not commands.
+- Events trigger explicit state transitions.
+- The system is always in exactly one known state.
+- States are represented internally by small integer identifiers.
+- Application logic reacts to state changes rather than raw messages.
+- Periodic work runs independently as scheduled tasks.
 
-While initially developed for ESP32, the core abstraction is platform-agnostic
-and applicable to other state-driven, message-based systems.
+Execution model:
 
+- MQTT messages are processed sequentially.
+- State transitions are resolved using a fixed, table-driven `(topic, payload) → state mapping`.
+- Execution remains deterministic and predictable.
 
-## Core Principle
-
-MQTT messages are events.  
-Events drive state transitions.  
-States coordinate periodic tasks.
-
-
-Internally, states are represented as small integer identifiers.
-
-
-- MQTT delivers events sequentially
-- events resolve into explicit, deterministic state transitions
-- the system is always in exactly one known state
-- application logic reacts to state changes
-- periodic tasks run independently of message handling
-
-State transitions are resolved by a fixed, table-driven mapping from
-`(topic, payload)` to a target state, while periodic work is executed
-independently as FreeRTOS tasks, keeping control flow explicit.
+Originally developed for ESP32, the core abstraction is platform-agnostic and applicable to other state-driven, message-based embedded systems.
 
 
 ## Installation
