@@ -186,7 +186,7 @@ int StateMQEsp::rawIndex(const char* topic) const {
   return -1;
 }
 
-bool StateMQEsp::sub(const char* topic, int qos) {
+bool StateMQEsp::subscribe(const char* topic, int qos) {
   if (!topic || !*topic) return false;
 
   qos = clamp_qos(qos);

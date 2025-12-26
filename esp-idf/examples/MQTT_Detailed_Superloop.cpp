@@ -43,7 +43,7 @@ extern "C" void app_main(void) {
   esp.setKeepAliveSeconds(5);
 
   //Umapped Subscribe
-  esp.sub(CHAT_TOPIC, 1);
+  esp.subscribe(CHAT_TOPIC, 1);
 
   // Last Will Message
   esp.setLastWill(WILL_TOPIC, "offline", 1, false);

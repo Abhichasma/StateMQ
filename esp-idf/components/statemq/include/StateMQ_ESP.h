@@ -33,7 +33,7 @@ public:
   void setRetainState(bool retain);
   void setDefaultPublishQos(int qos);
 
-  bool sub(const char* topic, int qos = 0);
+  bool subscribe(const char* topic, int qos = 0);
   const char* msg(const char* topic);
 
   bool begin(const char* wifi_ssid,

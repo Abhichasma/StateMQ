@@ -196,7 +196,7 @@ extern "C" void app_main(void) {
 
   // MQTT wrapper configuration
   esp.setSubscribeQos(STATE_TOPIC, 2);
-  esp.sub(CHAT_TOPIC, 0);
+  esp.subscribe(CHAT_TOPIC, 0);
 
   esp.setKeepAliveSeconds(5);
   esp.setRetainState(true);

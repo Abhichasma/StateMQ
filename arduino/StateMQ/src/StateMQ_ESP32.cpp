@@ -120,7 +120,7 @@ int StateMQEsp32::rawIndex(const char* topic) const {
 
 // RAW Subscribe
 
-bool StateMQEsp32::sub(const char* topic, int qos) {
+bool StateMQEsp32::subscribe(const char* topic, int qos) {
   if (!topic || !*topic) return false;
 
   if (qos < 0) qos = 0;

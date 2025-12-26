@@ -55,7 +55,7 @@ void setup() {
   esp.setKeepAliveSeconds(5);
 
   // Optional raw subscription (not part of the state rule table).
-  esp.sub(CHAT_TOPIC, /*qos=*/0);
+  esp.subscribe(CHAT_TOPIC, /*qos=*/0);
 
   // Configure MQTT Last-Will message
   esp.setLastWill(WILL_TOPIC, "OFFLINE", /*qos=*/1, /*retain=*/false);

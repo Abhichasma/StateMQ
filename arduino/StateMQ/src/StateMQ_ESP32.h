@@ -46,7 +46,7 @@ public:
 
   void end(bool disconnect_wifi = false);
 
-  bool sub(const char* topic, int qos = 0);
+  bool subscribe(const char* topic, int qos = 0);
   const char* msg(const char* topic);
 
   bool publish(const char* topic,
