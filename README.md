@@ -207,11 +207,6 @@ configuration for telemetry, logs, and auxiliary topics. QoS configuration suppo
 // Publish arbitrary MQTT messages (telemetry/logs/etc.)
 esp.publish("node/log", "booted", /*qos=*/1, /*retain=*/false);
 
-HEAD
-// Configure subscribe QoS defaults + per-topic subscribe QoS
-esp.setDefaultSubscribeQos(0);
-esp.subscribe("node/topic", /*qos=*/2);
-
 // Subscribe to auxiliary topic or set QoS to a mapped one
 esp.subscribe("node/topic", /*qos=*/2);
 
